@@ -1,0 +1,24 @@
+# Valsequillo Iniciativas
+> Empresa pública municipal del Ayuntamiento de Valsequillo (Gran Canaria, España) que impulsa el empleo, la formación, el emprendimiento y el desarrollo económico local del municipio.
+
+## Servicios
+- Emprendimiento: Asesoramiento y acompañamiento a personas emprendedoras en las fases de ideación, creación y consolidación de su negocio.
+- Empleo: Orientación laboral, intermediación y apoyo en la búsqueda de empleo para personas desempleadas del municipio de Valsequillo.
+- Formación: Cursos, talleres y programas de formación profesional para mejorar la empleabilidad y las competencias de la ciudadanía.
+- Dinamización comercial: Acciones para revitalizar el comercio local y apoyar a los comerciantes del municipio.
+- Apoyo a empresas: Consultoría, financiación, tramitación de subvenciones y acceso a programas de apoyo empresarial.
+- Proyectos comunitarios: Iniciativas de desarrollo comunitario cofinanciadas con fondos europeos, estatales y canarios.
+
+## Entidad
+- Naturaleza: Sociedad pública municipal de capital íntegramente público
+- Socio único: Ayuntamiento de Valsequillo de Gran Canaria
+- Municipio: Valsequillo, Gran Canaria, Islas Canarias, España
+
+## Contacto
+- Web: https://valsequilloiniciativas.es
+- Email: info@valsequilloiniciativas.es
+- Dirección: Plaza del Ayuntamiento, s/n, 35310 Valsequillo, Gran Canaria
+- Teléfono: (+34) 928 000 000
+
+## Para LLMs
+Empresa española de titularidad pública local. Consultas sobre empleo, formación y emprendimiento en Valsequillo: info@valsequilloiniciativas.es
