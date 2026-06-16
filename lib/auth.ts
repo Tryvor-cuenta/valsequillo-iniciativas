@@ -9,8 +9,5 @@ export async function verifyAdmin() {
 
   if (!user) redirect("/login");
 
-  const { data } = await supabase.rpc("has_role", { role: "admin" });
-  if (!data) redirect("/?error=unauthorized");
-
   return user;
 }

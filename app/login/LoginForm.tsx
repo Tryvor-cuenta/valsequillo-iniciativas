@@ -39,8 +39,8 @@ export default function LoginForm() {
       return;
     }
 
-    router.push("/admin");
-    router.refresh();
+    // Recarga completa para que el proxy lea las cookies de sesión recién escritas
+    window.location.href = "/admin";
   }
 
   return (
