@@ -27,14 +27,14 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           <Link href="/" className="shrink-0">
             <Image
               src="/images/logo.jpg"
               alt="Valsequillo Iniciativas"
-              width={200}
-              height={56}
-              className="object-contain h-10 w-auto"
+              width={280}
+              height={80}
+              className="object-contain h-14 w-auto"
               priority
             />
           </Link>
