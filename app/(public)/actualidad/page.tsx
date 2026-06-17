@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/server";
 import type { NewsItem } from "@/types";
 
 export const metadata: Metadata = {
-  title: "Noticias",
+  title: "Actualidad",
   description:
     "Últimas noticias y novedades de Valsequillo Iniciativas sobre empleo, formación y desarrollo local.",
 };
@@ -48,7 +48,7 @@ export default async function NoticiasPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {news.map((item) => (
-              <Link key={item.id} href={`/noticias/${item.slug}`} className="group">
+              <Link key={item.id} href={`/actualidad/${item.slug}`} className="group">
                 <Card className="h-full border-gray-200 hover:shadow-md transition-shadow overflow-hidden">
                   {item.imagen_url && (
                     <div className="aspect-video bg-gray-100 overflow-hidden">

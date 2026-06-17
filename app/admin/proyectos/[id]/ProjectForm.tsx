@@ -11,7 +11,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { createClient } from "@/lib/supabase/client";
-import type { Project } from "@/types";
 
 const schema = z.object({
   titulo: z.string().min(2),
@@ -21,13 +20,30 @@ const schema = z.object({
   etiqueta: z.string(),
   estado: z.string().min(1),
   orden: z.string(),
+  document_url: z.string().url("URL inválida").or(z.literal("")),
 });
 
 type FormData = z.infer<typeof schema>;
 
+interface Project {
+  id: string;
+  titulo: string;
+  resumen: string;
+  cuerpo: string | null;
+  imagen_url: string | null;
+  etiqueta: string | null;
+  estado: string;
+  orden: number;
+  document_url: string | null;
+  document_file_url: string | null;
+}
+
 export default function ProjectForm({ item }: { item: Project | null }) {
   const router = useRouter();
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [fileUrl, setFileUrl] = useState<string>(item?.document_file_url ?? "");
+
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -38,18 +54,44 @@ export default function ProjectForm({ item }: { item: Project | null }) {
       etiqueta: item?.etiqueta ?? "",
       estado: item?.estado ?? "en_curso",
       orden: item?.orden?.toString() ?? "0",
+      document_url: item?.document_url ?? "",
     },
   });
+
+  async function handleDocUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    try {
+      const supabase = createClient();
+      const ext = file.name.split(".").pop();
+      const fileName = `doc-${Date.now()}.${ext}`;
+      const { data, error } = await supabase.storage.from("proyectos-docs").upload(fileName, file, { upsert: false });
+      if (error) throw error;
+      const { data: { publicUrl } } = supabase.storage.from("proyectos-docs").getPublicUrl(data.path);
+      setFileUrl(publicUrl);
+      toast.success("Documento subido");
+    } catch {
+      toast.error("Error al subir el documento");
+    } finally {
+      setUploading(false);
+    }
+  }
 
   async function onSubmit(data: FormData) {
     setSaving(true);
     const supabase = createClient();
     const payload = {
-      ...data,
-      orden: parseInt(data.orden) || 0,
+      titulo: data.titulo,
+      resumen: data.resumen,
       cuerpo: data.cuerpo || null,
       imagen_url: data.imagen_url || null,
       etiqueta: data.etiqueta || null,
+      estado: data.estado,
+      orden: parseInt(data.orden) || 0,
+      // Si hay archivo subido, tiene prioridad; si no, usar URL externa
+      document_file_url: fileUrl || null,
+      document_url: !fileUrl && data.document_url ? data.document_url : null,
     };
     const { error } = item
       ? await supabase.from("projects").update(payload).eq("id", item.id)
@@ -96,8 +138,29 @@ export default function ProjectForm({ item }: { item: Project | null }) {
           <Input id="orden" type="number" {...register("orden")} />
         </div>
       </div>
+
+      {/* Documento */}
+      <div className="p-4 border border-gray-100 rounded-lg bg-gray-50 space-y-3">
+        <Label>Documento del proyecto (opcional)</Label>
+        <div className="space-y-2">
+          <div>
+            <Label htmlFor="doc_file" className="text-xs text-gray-500">Subir archivo (PDF, DOC, XLS…)</Label>
+            <Input id="doc_file" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx" onChange={handleDocUpload} disabled={uploading} className="mt-1" />
+            {uploading && <p className="text-xs text-[#00695C] mt-1">Subiendo…</p>}
+            {fileUrl && <p className="text-xs text-green-600 mt-1 truncate">✓ {fileUrl}</p>}
+          </div>
+          {!fileUrl && (
+            <div>
+              <Label htmlFor="document_url" className="text-xs text-gray-500">O URL externa del documento</Label>
+              <Input id="document_url" {...register("document_url")} placeholder="https://..." className="mt-1" />
+              {errors.document_url && <p className="text-xs text-red-500">{errors.document_url.message}</p>}
+            </div>
+          )}
+        </div>
+      </div>
+
       <div className="flex gap-3 pt-2">
-        <Button type="submit" disabled={saving} className="bg-[#00695C] hover:bg-[#004D40]">
+        <Button type="submit" disabled={saving || uploading} className="bg-[#00695C] hover:bg-[#004D40]">
           {saving ? "Guardando..." : item ? "Actualizar" : "Crear"}
         </Button>
         <Button type="button" variant="outline" onClick={() => router.push("/admin/proyectos")}>Cancelar</Button>

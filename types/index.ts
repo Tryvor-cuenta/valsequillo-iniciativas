@@ -34,6 +34,8 @@ export interface Project {
   etiqueta: string | null;
   estado: string;
   orden: number;
+  document_url: string | null;
+  document_file_url: string | null;
 }
 
 export interface Job {

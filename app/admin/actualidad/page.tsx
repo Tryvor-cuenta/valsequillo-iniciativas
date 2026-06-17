@@ -8,7 +8,7 @@ import { createClient } from "@/lib/supabase/server";
 import type { NewsItem } from "@/types";
 import DeleteButton from "@/components/admin/DeleteButton";
 
-export const metadata: Metadata = { title: "Noticias — Admin" };
+export const metadata: Metadata = { title: "Actualidad — Admin" };
 
 async function getNews(): Promise<NewsItem[]> {
   try {
@@ -29,9 +29,9 @@ export default async function AdminNoticiasPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Noticias</h1>
-        <LinkButton href="/admin/noticias/new" className="bg-[#00695C] hover:bg-[#004D40]">
-          <Plus className="h-4 w-4 mr-1.5" /> Nueva noticia
+        <h1 className="text-2xl font-bold text-gray-900">Actualidad</h1>
+        <LinkButton href="/admin/actualidad/new" className="bg-[#00695C] hover:bg-[#004D40]">
+          <Plus className="h-4 w-4 mr-1.5" /> Nueva entrada
         </LinkButton>
       </div>
 
@@ -76,7 +76,7 @@ export default async function AdminNoticiasPage() {
                   <TableCell>
                     <div className="flex items-center gap-2">
                       <Link
-                        href={`/admin/noticias/${item.id}`}
+                        href={`/admin/actualidad/${item.id}`}
                         className="text-xs text-[#00695C] hover:underline"
                       >
                         Editar

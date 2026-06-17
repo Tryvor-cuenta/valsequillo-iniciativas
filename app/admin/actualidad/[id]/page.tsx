@@ -8,7 +8,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props) {
   const { id } = await params;
-  return { title: id === "new" ? "Nueva noticia — Admin" : "Editar noticia — Admin" };
+  return { title: id === "new" ? "Nueva entrada — Admin" : "Editar noticia — Admin" };
 }
 
 export default async function NewsEditPage({ params }: Props) {
@@ -26,7 +26,7 @@ export default async function NewsEditPage({ params }: Props) {
   return (
     <div>
       <h1 className="text-2xl font-bold text-gray-900 mb-6">
-        {id === "new" ? "Nueva noticia" : "Editar noticia"}
+        {id === "new" ? "Nueva entrada" : "Editar noticia"}
       </h1>
       <NewsForm item={item} />
     </div>

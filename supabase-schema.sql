@@ -188,3 +188,84 @@ insert into public.services (icono, titulo, descripcion, cta, orden) values
   ('Briefcase', 'Apoyo a empresas', 'Servicios de consultoría, financiación, tramitación de subvenciones y acceso a programas de apoyo empresarial.', 'Consultar', 5),
   ('Heart', 'Proyectos comunitarios', 'Iniciativas de desarrollo comunitario cofinanciadas con fondos europeos, estatales y canarios.', 'Ver proyectos', 6)
 on conflict do nothing;
+
+-- ============================================================
+-- MIGRACIONES v2 (ejecutar sobre schema existente)
+-- ============================================================
+
+-- Columnas de documentos en proyectos
+ALTER TABLE public.projects ADD COLUMN IF NOT EXISTS document_url text;
+ALTER TABLE public.projects ADD COLUMN IF NOT EXISTS document_file_url text;
+
+-- Tabla de solicitudes de empleo
+CREATE TABLE IF NOT EXISTS public.job_applications (
+  id         uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name       text NOT NULL,
+  email      text NOT NULL,
+  phone      text,
+  position   text,
+  message    text,
+  cv_url     text NOT NULL,
+  created_at timestamptz DEFAULT now()
+);
+
+ALTER TABLE public.job_applications ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Insert público job_applications"
+  ON public.job_applications FOR INSERT WITH CHECK (true);
+
+CREATE POLICY "Admin lee solicitudes"
+  ON public.job_applications FOR SELECT
+  USING (has_role('admin'));
+
+-- ============================================================
+-- SUPABASE STORAGE — Buckets necesarios
+-- ============================================================
+-- Ejecutar en el Dashboard de Supabase > Storage > New Bucket:
+--
+-- 1. actualidad-images   → público   (acceso público de lectura)
+-- 2. curriculums         → privado   (solo admin puede leer vía signed URL)
+-- 3. proyectos-docs      → público   (acceso público de lectura)
+--
+-- O ejecutar este SQL en el SQL Editor de Supabase:
+
+INSERT INTO storage.buckets (id, name, public)
+VALUES
+  ('actualidad-images', 'actualidad-images', true),
+  ('curriculums',       'curriculums',       false),
+  ('proyectos-docs',    'proyectos-docs',    true)
+ON CONFLICT (id) DO NOTHING;
+
+-- Políticas de Storage para actualidad-images (público)
+CREATE POLICY "Public read actualidad-images"
+  ON storage.objects FOR SELECT
+  USING (bucket_id = 'actualidad-images');
+
+CREATE POLICY "Auth upload actualidad-images"
+  ON storage.objects FOR INSERT
+  WITH CHECK (bucket_id = 'actualidad-images' AND auth.role() = 'authenticated');
+
+-- Políticas de Storage para curriculums (privado)
+CREATE POLICY "Public insert curriculums"
+  ON storage.objects FOR INSERT
+  WITH CHECK (bucket_id = 'curriculums');
+
+CREATE POLICY "Admin read curriculums"
+  ON storage.objects FOR SELECT
+  USING (bucket_id = 'curriculums' AND has_role('admin'));
+
+-- Políticas de Storage para proyectos-docs (público)
+CREATE POLICY "Public read proyectos-docs"
+  ON storage.objects FOR SELECT
+  USING (bucket_id = 'proyectos-docs');
+
+CREATE POLICY "Auth upload proyectos-docs"
+  ON storage.objects FOR INSERT
+  WITH CHECK (bucket_id = 'proyectos-docs' AND auth.role() = 'authenticated');
+
+-- Nuevos servicios: Música y Limpieza
+INSERT INTO public.services (icono, titulo, descripcion, cta, orden, activo)
+VALUES
+  ('Music2',   'Música',   'Próximamente', NULL, 90, true),
+  ('Sparkles', 'Limpieza', 'Próximamente', NULL, 91, true)
+ON CONFLICT DO NOTHING;

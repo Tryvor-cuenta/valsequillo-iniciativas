@@ -18,12 +18,13 @@ import { createClient } from "@/lib/supabase/client";
 
 const NAV = [
   { href: "/admin", icon: LayoutDashboard, label: "Dashboard", exact: true },
-  { href: "/admin/noticias", icon: Newspaper, label: "Noticias" },
+  { href: "/admin/actualidad", icon: Newspaper, label: "Actualidad" },
   { href: "/admin/servicios", icon: Briefcase, label: "Servicios" },
   { href: "/admin/proyectos", icon: FolderOpen, label: "Proyectos" },
   { href: "/admin/empleos", icon: Users, label: "Empleos" },
   { href: "/admin/formacion", icon: BookOpen, label: "Formación" },
   { href: "/admin/licitaciones", icon: Building2, label: "Licitaciones" },
+  { href: "/admin/solicitudes", icon: Users, label: "Solicitudes" },
   { href: "/admin/usuarios", icon: Users, label: "Usuarios" },
 ];
 

@@ -44,10 +44,10 @@ export default async function NoticiaDetailPage({ params }: Props) {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
       <Link
-        href="/noticias"
+        href="/actualidad"
         className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-[#00695C] mb-8"
       >
-        <ArrowLeft className="h-4 w-4" /> Volver a noticias
+        <ArrowLeft className="h-4 w-4" /> Volver a actualidad
       </Link>
 
       {item.imagen_url && (
