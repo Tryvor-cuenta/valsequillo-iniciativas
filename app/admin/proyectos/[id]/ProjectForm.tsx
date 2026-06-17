@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { createClient } from "@/lib/supabase/client";
+import { getStorageUrl } from "@/lib/storage";
 
 const schema = z.object({
   titulo: z.string().min(2),
@@ -68,7 +69,7 @@ export default function ProjectForm({ item }: { item: Project | null }) {
       const fileName = `doc-${Date.now()}.${ext}`;
       const { data, error } = await supabase.storage.from("proyectos-docs").upload(fileName, file, { upsert: false });
       if (error) throw error;
-      const { data: { publicUrl } } = supabase.storage.from("proyectos-docs").getPublicUrl(data.path);
+      const publicUrl = getStorageUrl("proyectos-docs", data.path);
       setFileUrl(publicUrl);
       toast.success("Documento subido");
     } catch {

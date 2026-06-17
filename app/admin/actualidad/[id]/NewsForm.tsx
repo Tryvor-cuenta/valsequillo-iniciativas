@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { createClient } from "@/lib/supabase/client";
+import { getStorageUrl } from "@/lib/storage";
 import type { NewsItem } from "@/types";
 
 const schema = z.object({
@@ -66,7 +67,8 @@ export default function NewsForm({ item }: { item: NewsItem | null }) {
       const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
       const { data, error } = await supabase.storage.from("actualidad-images").upload(fileName, file, { upsert: false });
       if (error) throw error;
-      const { data: { publicUrl } } = supabase.storage.from("actualidad-images").getPublicUrl(data.path);
+      // Construir URL pública manualmente: más fiable que getPublicUrl en SSR
+      const publicUrl = getStorageUrl("actualidad-images", data.path);
       setValue("imagen_url", publicUrl);
       setPreviewUrl(publicUrl);
       toast.success("Imagen subida correctamente");
