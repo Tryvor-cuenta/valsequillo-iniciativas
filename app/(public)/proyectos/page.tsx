@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageHero from "@/components/layout/PageHero";
 import { ExternalLink, FileText } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -34,14 +35,12 @@ export default async function ProyectosPage() {
 
   return (
     <div>
-      <div className="bg-[#00695C] text-white py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-4">Proyectos</h1>
-          <p className="text-[#B2DFDB] text-lg max-w-2xl">
-            Iniciativas y programas que transforman el tejido económico y social de Valsequillo.
-          </p>
-        </div>
-      </div>
+      <PageHero
+        title="Proyectos"
+        subtitle="Iniciativas y programas que transforman el tejido económico y social de Valsequillo."
+        image="/images/fachada-ayuntamiento.jpg"
+        objectPosition="center center"
+      />
 
       <div className="max-w-6xl mx-auto px-4 py-16">
         {projects.length === 0 ? (

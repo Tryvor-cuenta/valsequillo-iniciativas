@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CalendarDays, Clock, MapPin, Building2 } from "lucide-react";
+import PageHero from "@/components/layout/PageHero";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
@@ -32,15 +33,12 @@ export default async function EmpleoFormacionPage() {
 
   return (
     <div>
-      <div className="bg-[#00695C] text-white py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-4">Empleo y Formación</h1>
-          <p className="text-[#B2DFDB] text-lg max-w-2xl">
-            Ofertas de trabajo activas y programas formativos para impulsar tu carrera
-            profesional en Valsequillo.
-          </p>
-        </div>
-      </div>
+      <PageHero
+        title="Empleo y Formación"
+        subtitle="Ofertas de trabajo activas y programas formativos para impulsar tu carrera profesional en Valsequillo."
+        image="/images/pueblo-panoramica.jpg"
+        objectPosition="right center"
+      />
 
       <div className="max-w-5xl mx-auto px-4 py-16 space-y-16">
         {/* Empleo */}

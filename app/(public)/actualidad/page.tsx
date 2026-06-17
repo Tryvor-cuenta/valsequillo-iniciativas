@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import PageHero from "@/components/layout/PageHero";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
@@ -30,15 +31,12 @@ export default async function NoticiasPage() {
 
   return (
     <div>
-      <div className="bg-[#00695C] text-white py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-4">Noticias</h1>
-          <p className="text-[#B2DFDB] text-lg max-w-2xl">
-            Mantente al día con las últimas novedades, convocatorias y actividades de
-            Valsequillo Iniciativas.
-          </p>
-        </div>
-      </div>
+      <PageHero
+        title="Actualidad"
+        subtitle="Mantente al día con las últimas novedades, convocatorias y actividades de Valsequillo Iniciativas."
+        image="/images/hero.jpg"
+        objectPosition="left center"
+      />
 
       <div className="max-w-6xl mx-auto px-4 py-16">
         {news.length === 0 ? (

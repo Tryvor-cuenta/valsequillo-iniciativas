@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import PageHero from "@/components/layout/PageHero";
 import ContactForm from "./ContactForm";
 
 export const metadata: Metadata = {
@@ -11,14 +12,12 @@ export const metadata: Metadata = {
 export default function ContactoPage() {
   return (
     <div>
-      <div className="bg-[#00695C] text-white py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-4">Contacto</h1>
-          <p className="text-[#B2DFDB] text-lg max-w-2xl">
-            Estamos aquí para ayudarte. Escríbenos o visítanos en nuestras oficinas.
-          </p>
-        </div>
-      </div>
+      <PageHero
+        title="Contacto"
+        subtitle="Estamos aquí para ayudarte. Escríbenos o visítanos en nuestras oficinas."
+        image="/images/vegas-panoramica.jpg"
+        objectPosition="bottom center"
+      />
 
       <div className="max-w-5xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

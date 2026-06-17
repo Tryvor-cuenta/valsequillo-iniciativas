@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageHero from "@/components/layout/PageHero";
 import { ChevronDown, ExternalLink } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -132,15 +133,12 @@ const SECCIONES: Seccion[] = [
 export default function TransparenciaPage() {
   return (
     <div>
-      <div className="bg-[#00695C] text-white py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-4">Transparencia</h1>
-          <p className="text-[#B2DFDB] text-lg max-w-2xl">
-            Publicidad activa conforme a la Ley 19/2013, de 9 de diciembre, de transparencia,
-            acceso a la información pública y buen gobierno.
-          </p>
-        </div>
-      </div>
+      <PageHero
+        title="Transparencia"
+        subtitle="Publicidad activa conforme a la Ley 19/2013, de 9 de diciembre, de transparencia, acceso a la información pública y buen gobierno."
+        image="/images/hero.jpg"
+        objectPosition="center top"
+      />
 
       <div className="max-w-4xl mx-auto px-4 py-16 space-y-10">
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-800">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import JobApplicationForm from "./JobApplicationForm";
+import PageHero from "@/components/layout/PageHero";
 
 export const metadata: Metadata = {
   title: "Trabaja con nosotros",
@@ -9,15 +10,12 @@ export const metadata: Metadata = {
 export default function TrabajaCon() {
   return (
     <div>
-      <div className="bg-[#00695C] text-white py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-4">Trabaja con nosotros</h1>
-          <p className="text-[#B2DFDB] text-lg max-w-2xl">
-            Si compartes nuestra misión de impulsar el desarrollo económico y social de
-            Valsequillo, envíanos tu candidatura. Revisamos cada solicitud con atención.
-          </p>
-        </div>
-      </div>
+      <PageHero
+        title="Trabaja con nosotros"
+        subtitle="Si compartes nuestra misión de impulsar el desarrollo económico y social de Valsequillo, envíanos tu candidatura."
+        image="/images/pueblo-panoramica.jpg"
+        objectPosition="center bottom"
+      />
 
       <div className="max-w-2xl mx-auto px-4 py-16">
         <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-8 text-sm text-amber-800">

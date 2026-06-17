@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageHero from "@/components/layout/PageHero";
 import Link from "next/link";
 import { ArrowRight, Briefcase, Users, BookOpen, ShoppingBag, TrendingUp, Heart, Music2, Sparkles } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -53,14 +54,12 @@ export default async function ServiciosPage() {
 
   return (
     <div>
-      <div className="bg-[#00695C] text-white py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-4">Nuestros servicios</h1>
-          <p className="text-[#B2DFDB] text-lg max-w-2xl">
-            Acompañamos a personas y empresas en cada etapa de su desarrollo con servicios especializados y adaptados a la realidad local.
-          </p>
-        </div>
-      </div>
+      <PageHero
+        title="Nuestros servicios"
+        subtitle="Acompañamos a personas y empresas en cada etapa de su desarrollo con servicios especializados y adaptados a la realidad local."
+        image="/images/vegas-panoramica.jpg"
+        objectPosition="center center"
+      />
 
       <div className="max-w-6xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -64,6 +64,20 @@ export default function JobApplicationForm() {
 
       if (insertError) throw new Error(insertError.message);
 
+      // 4. Notificación por email (no bloqueante)
+      fetch("/api/job-application", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: data.phone || undefined,
+          position: data.position || undefined,
+          cv_path: cvUrl,
+          supabase_url: process.env.NEXT_PUBLIC_SUPABASE_URL ?? "",
+        }),
+      }).catch(() => {}); // silencioso — no afecta UX
+
       toast.success("Candidatura enviada", {
         description: "Hemos recibido tu solicitud. Te contactaremos si tu perfil encaja.",
       });

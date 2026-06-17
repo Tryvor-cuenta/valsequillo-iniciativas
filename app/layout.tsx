@@ -10,18 +10,23 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://valsequilloiniciativas.es"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.valsequilloiniciativas.com"),
   title: {
     template: "%s | Valsequillo Iniciativas",
     default: "Valsequillo Iniciativas — Empresa Pública Municipal de Valsequillo",
   },
   description:
     "Empresa pública municipal del Ayuntamiento de Valsequillo que impulsa el empleo, la formación, el emprendimiento y el desarrollo económico local en Gran Canaria.",
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
   openGraph: {
     type: "website",
     locale: "es_ES",
     siteName: "Valsequillo Iniciativas",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+    images: [{ url: "/images/hero.jpg", width: 1200, height: 630 }],
   },
 };
 

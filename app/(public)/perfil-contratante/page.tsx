@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ExternalLink, CalendarDays } from "lucide-react";
+import PageHero from "@/components/layout/PageHero";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { createClient } from "@/lib/supabase/server";
@@ -35,15 +36,12 @@ export default async function PerfilContratantePage() {
 
   return (
     <div>
-      <div className="bg-[#00695C] text-white py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-4">Perfil del Contratante</h1>
-          <p className="text-[#B2DFDB] text-lg max-w-2xl">
-            Información sobre licitaciones y contratos de Valsequillo Iniciativas conforme
-            a la Ley de Contratos del Sector Público.
-          </p>
-        </div>
-      </div>
+      <PageHero
+        title="Perfil del Contratante"
+        subtitle="Información sobre licitaciones y contratos de Valsequillo Iniciativas conforme a la Ley de Contratos del Sector Público."
+        image="/images/fachada-ayuntamiento.jpg"
+        objectPosition="top center"
+      />
 
       <div className="max-w-6xl mx-auto px-4 py-16">
         <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-8 text-sm text-amber-800">
