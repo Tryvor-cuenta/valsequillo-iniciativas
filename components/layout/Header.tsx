@@ -32,9 +32,9 @@ export default function Header() {
             <Image
               src="/images/logo.jpg"
               alt="Valsequillo Iniciativas"
-              width={280}
-              height={80}
-              className="object-contain h-14 w-auto"
+              width={360}
+              height={100}
+              className="object-contain h-16 w-auto [mix-blend-mode:multiply]"
               priority
             />
           </Link>

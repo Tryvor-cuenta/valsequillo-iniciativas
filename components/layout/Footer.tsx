@@ -11,9 +11,9 @@ export default function Footer() {
             <Image
               src="/images/logo.jpg"
               alt="Valsequillo Iniciativas"
-              width={180}
-              height={50}
-              className="object-contain h-10 w-auto"
+              width={220}
+              height={60}
+              className="object-contain h-12 w-auto [mix-blend-mode:multiply]"
             />
           </Link>
 
