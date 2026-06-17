@@ -28,18 +28,15 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-3 shrink-0">
+          <Link href="/" className="shrink-0">
             <Image
-              src="/images/logo-ayto.png"
-              alt="Ayuntamiento de Valsequillo"
-              width={48}
-              height={48}
-              className="object-contain h-12 w-auto"
+              src="/images/logo.jpg"
+              alt="Valsequillo Iniciativas"
+              width={200}
+              height={56}
+              className="object-contain h-10 w-auto"
               priority
             />
-            <span className="font-semibold text-gray-900 text-sm leading-tight hidden sm:block">
-              Valsequillo<br />Iniciativas
-            </span>
           </Link>
 
           <nav className="hidden xl:flex items-center gap-0.5" aria-label="Navegación principal">

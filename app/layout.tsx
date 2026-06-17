@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   description:
     "Empresa pública municipal del Ayuntamiento de Valsequillo que impulsa el empleo, la formación, el emprendimiento y el desarrollo económico local en Gran Canaria.",
   icons: {
-    icon: "/icon.png",
-    shortcut: "/icon.png",
-    apple: "/icon.png",
+    icon: "/images/isotipo.jpg",
+    shortcut: "/images/isotipo.jpg",
+    apple: "/images/isotipo.jpg",
   },
   openGraph: {
     type: "website",
